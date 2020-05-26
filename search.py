@@ -18,9 +18,9 @@ def create_output_path(path):
     try:
         os.mkdir(OUTPUT_PATH+path)
     except OSError:
-        print ("directory %s already exists" % path)
+        print ('directory %s already exists' % path)
     else:
-        print ("Successfully created the directory %s " % path)
+        print ('Successfully created the directory %s ' % path)
 
 def main(word):
     create_output_path(word)
