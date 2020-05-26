@@ -32,7 +32,7 @@ sudo systemctl stop elasticsearch.service
 
 ## Run
 From the output of the [Querido Diário](https://github.com/okfn-brasil/diario-oficial), it is possible to access files in text format of the Brazilian municipal gazettes. for example:
-`scrapy crawl sc_florianopolis -start_date='2020-05-05'`
+`scrapy crawl sc_florianopolis -a start_date='2020-05-05'`
 
 The above command collects all the diaries of Florianópolis city, as of the date 2020-05-05.
 
