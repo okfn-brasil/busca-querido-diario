@@ -37,7 +37,7 @@ From the output of the [Querido Diário](https://github.com/okfn-brasil/diario-o
 The above command collects all the diaries of Florianópolis city, as of the date 2020-05-05.
 
 With the text files obtained using the scraper, it is necessary to point out where the files are for the collection of information made by elasticsearch:
-`python load_data.py /home/user/path-to/diario-oficial/data/full`
+`python load_data.py /home/user/path-to/diario-oficial/data/full/`
 
 **Finally, here is the command to search for a word**:
 `python search.py covid-19`

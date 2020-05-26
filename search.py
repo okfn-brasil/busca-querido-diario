@@ -5,6 +5,7 @@ import sys
 import elasticsearch
 
 INDEX_NAME = 'consultas'
+OUTPUT_PATH = 'data/'
 
 
 def get_word():
@@ -13,18 +14,16 @@ def get_word():
     """
     return ' '.join(sys.argv[1:])
 
-def create_output_path():
-    path = get_word()
+def create_output_path(path):
     try:
-        os.mkdir(path)
+        os.mkdir(OUTPUT_PATH+path)
     except OSError:
-        print ("directory %s already exists failed" % path)
+        print ("directory %s already exists" % path)
     else:
         print ("Successfully created the directory %s " % path)
 
-def main():
-    word = get_word()
-    create_output_path()
+def main(word):
+    create_output_path(word)
 
     es = elasticsearch.Elasticsearch(hosts=['localhost'])
     query = {
@@ -35,9 +34,9 @@ def main():
     for hit in result['hits']['hits']:
         gazette = hit['_source']['text']
 
-        with open('{}/{}.txt'.format(get_word(), hit['_source']['id']), 'w') as file:
+        with open('{}{}/{}.txt'.format(OUTPUT_PATH, word, hit['_source']['id']), 'w') as file:
             file.write(gazette)
 
 
 if __name__ == '__main__':
-    main()
+    main(word=get_word())
