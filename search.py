@@ -27,9 +27,10 @@ def main(word):
 
     es = elasticsearch.Elasticsearch(hosts=['localhost'])
     query = {
-        'query': {'query_string': {'query': word, 'default_field': 'text'}}
+        'query': {'query_string': {'query': word, 'default_field': 'text', "default_operator": "AND"}}
     }
-    result = es.search(index=INDEX_NAME, body=query)
+    result = es.search(index=INDEX_NAME, body=query, size=800)
+    print(len(result['hits']['hits']))
 
     for hit in result['hits']['hits']:
         gazette = hit['_source']['text']
