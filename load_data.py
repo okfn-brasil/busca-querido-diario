@@ -28,7 +28,9 @@ def load_data_into_es(es):
     gazette_list = glob.glob('{}*.txt'.format(path))
 
     for index, gazzete in enumerate(gazette_list):
-        with open(gazzete) as file:
+        # the errors='ignore' argument make the utf8 encoder ignore the chars
+        # it cannot parse.
+        with open(gazzete, 'r', encoding='utf8', errors='ignore') as file:
             data = file.read()
             ret = es.index(
                 index=INDEX_NAME,
