@@ -29,6 +29,15 @@ Elasticsearch can be started and stopped as follows:
 sudo systemctl start elasticsearch.service
 sudo systemctl stop elasticsearch.service
 ```
+If you do not want to install ElasticSearch in your local machine you can run it in a container with one of the
+following commands:
+
+```bash
+# These commands are NOT recommended for production. 
+$ docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.7.1
+# or
+$ podman run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.7.1
+```
 
 ## Run
 From the output of the [Querido Diário](https://github.com/okfn-brasil/diario-oficial), it is possible to access files in text format of the Brazilian municipal gazettes. for example:
